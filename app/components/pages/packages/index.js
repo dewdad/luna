@@ -2,4 +2,4 @@
 
 import Packages from './Packages';
 
-export { Packages };
+export default { Packages };

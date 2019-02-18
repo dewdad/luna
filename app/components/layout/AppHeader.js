@@ -121,8 +121,7 @@ const Header = ({ classes, onDrawerToggle }) => {
           onChange={(e, value) => dispatch(setActivePage(value))}
         >
           <Tab textColor="inherit" label="Packages" value="packages" />
-          <Tab textColor="inherit" label="Problems" value="problems" />
-          <Tab textColor="inherit" label="Scripts" value="scripts" />
+          <Tab textColor="inherit" label="Tools" value="tools" />
         </Tabs>
       </AppBar>
     </React.Fragment>

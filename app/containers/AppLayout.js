@@ -11,6 +11,7 @@ import Navigator from 'components/layout/Navigator';
 import Header from 'components/layout/AppHeader';
 import SnackbarContent from 'components/common/SnackbarContent';
 import { Packages } from 'components/pages/packages';
+import { Tools } from 'components/pages/tools';
 
 import { setSnackbar } from 'models/ui/actions';
 import { switchcase } from 'commons/utils';
@@ -66,7 +67,7 @@ const AppLayout = ({ classes }) => {
     mapState
   );
   const dispatch = useDispatch();
-
+  console.log(activePage);
   return (
     <MuiThemeProvider theme={theme}>
       <div className={classes.root}>
@@ -92,8 +93,9 @@ const AppLayout = ({ classes }) => {
           <Header onDrawerToggle={() => toggleDrawer(!drawerOpen)} />
           <main className={classes.mainContent}>
             {switchcase({
-              packages: () => <Packages />
-            })('packages')(activePage)}
+              packages: () => <Packages />,
+              tools: () => <Tools />
+            })(<Packages />)(activePage)}
           </main>
         </div>
         {snackbarOptions && snackbarOptions.open && (
