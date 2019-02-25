@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 
@@ -15,9 +15,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+
+import AppStepper from 'components/layout/Stepper';
 import SearchBox from 'components/common/SearchBox';
 import { setActivePage } from 'models/ui/actions';
-
+import { INFO_MESSAGES } from 'constants/AppConstants';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/appHeader';
 
@@ -35,6 +42,7 @@ const mapState = ({
 
 const Header = ({ classes, onDrawerToggle }) => {
   const dispatch = useDispatch();
+  const [activeDialog, setActiveDialog] = useState(null);
   const { activePage } = useMappedState(mapState);
 
   return (
@@ -93,6 +101,7 @@ const Header = ({ classes, onDrawerToggle }) => {
                 variant="outlined"
                 color="inherit"
                 size="small"
+                onClick={e => setActiveDialog(1)}
               >
                 Create package
               </Button>
@@ -127,6 +136,26 @@ const Header = ({ classes, onDrawerToggle }) => {
           <Tab textColor="inherit" label="Scripts" value="scripts" />
         </Tabs>
       </AppBar>
+      <Dialog
+        open={activeDialog === 1}
+        onClose={() => setActiveDialog(0)}
+        aria-labelledby="create-package"
+        maxWidth="md"
+      >
+        <DialogTitle id="create-package">Create package</DialogTitle>
+        <DialogContent>
+          <DialogContentText>{INFO_MESSAGES.creation}</DialogContentText>
+          <AppStepper />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setActiveDialog(0)} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={() => handleCreate('')} color="primary" autoFocus>
+            Create
+          </Button>
+        </DialogActions>
+      </Dialog>
     </React.Fragment>
   );
 };

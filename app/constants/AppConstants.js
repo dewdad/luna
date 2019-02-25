@@ -59,7 +59,8 @@ export const INFO_MESSAGES = {
   noData: 'No dependencies found.',
   loaded: 'Package loaded.',
   updating: 'Please wait. Updating packages',
-  installing: 'Please choose installation options'
+  installing: 'Please choose installation options',
+  creation: 'This guide will walk you through creating a package.json file.'
 };
 
 export const WARNING_MESSAGES = {
