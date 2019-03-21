@@ -47,12 +47,13 @@ export const NPM_CONFIG_VALUES = {
 
 export const INFO_MESSAGES = {
   loading: 'Loading packages..',
-  noData: 'No dependencies found.',
-  loaded: 'Package loaded.',
+  noData: 'No dependencies found',
+  loaded: 'Package loaded',
+  updated: 'Packages Updated',
   updating: 'Please wait. Updating packages',
   installing: 'Please choose installation options',
   extraneous:
-    'Found extraneous packages. Run npm prune from the Tools tab to fix them.'
+    'Found extraneous packages. Run npm prune from the Tools tab to fix them'
 };
 
 export const WARNING_MESSAGES = {

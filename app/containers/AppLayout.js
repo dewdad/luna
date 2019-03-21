@@ -4,15 +4,17 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import { INFO_MESSAGES } from 'constants/AppConstants';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Snackbar from '@material-ui/core/Snackbar';
 import theme from 'styles/theme';
 
+import SnackbarContent from 'components/common/SnackbarContent';
 import Navigator from 'components/layout/Navigator';
 import Header from 'components/layout/AppHeader';
 import { Packages } from 'components/pages/packages';
-import SnackbarContent from 'components/common/SnackbarContent';
 import { Notifications } from 'components/pages/notifications';
+
 import { addActionError, removePackages } from 'models/packages/actions';
 import { setSnackbar, toggleLoader } from 'models/ui/actions';
 import { switchcase, shrinkDirectory } from 'commons/utils';
@@ -79,10 +81,14 @@ const AppLayout = ({ classes }) => {
         dispatch(removePackages({ removedPackages: removedOrUpdatedPackages }));
       }
 
+      const messageParts =
+        message.indexOf('+') > -1 ? message.split('+') : message;
+      const [info, msg] = messageParts;
+
       dispatch(
         setSnackbar({
           open: true,
-          message: message || 'Packages updated'
+          message: (msg && msg.trim()) || INFO_MESSAGES.updated
         })
       );
 

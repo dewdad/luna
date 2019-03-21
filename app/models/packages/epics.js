@@ -136,7 +136,7 @@ const packagesSuccessEpic = (action$, state$) =>
             problems,
             missing
           } = dependency;
-          if (name === 'redux') console.log(dependency);
+
           if (!peerMissing && !invalid && !extraneous && !missing) {
             const [isOutdated, outdatedPkg] = isPackageOutdated(outdated, name);
             const enhancedDependency = {
@@ -147,14 +147,6 @@ const packagesSuccessEpic = (action$, state$) =>
 
             deps.push(enhancedDependency);
           }
-
-          // deps.push({
-          //   name,
-          //   invalid,
-          //   extraneous,
-          //   problems,
-          //   isOutdated: false
-          // });
 
           return deps;
         }, []);
